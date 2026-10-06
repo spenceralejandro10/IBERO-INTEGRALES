@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Actividad 2 · Integral indefinida · David Spencer</title>
+  <title>Actividad 2 · Integral indefinida · David Alejandro Spencer</title>
   <script>
     window.MathJax = {
       tex: { inlineMath: [['\\(','\\)'], ['$', '$']] },
@@ -13,278 +13,529 @@
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <style>
     :root{
-      --bg:#f5f7fb;
+      --bg:#f4f7fb;
       --card:#ffffff;
-      --ink:#152033;
+      --ink:#172033;
       --muted:#667085;
-      --line:#d9e0ea;
-      --accent:#3559e0;
+      --line:#dbe2ec;
+      --accent:#3157d5;
       --accent-soft:#eef2ff;
-      --ok:#18864b;
-      --shadow:0 18px 45px rgba(21,32,51,.10);
-      --radius:22px;
+      --ok:#14804a;
+      --dark:#111827;
+      --shadow:0 16px 42px rgba(21,32,51,.09);
+      --radius:20px;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:linear-gradient(180deg,#f8faff 0%,var(--bg) 100%);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:linear-gradient(180deg,#fafbff 0%,var(--bg) 100%);
       color:var(--ink);
     }
-    .app{max-width:1120px;margin:0 auto;padding:28px 18px 56px}
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
-      margin-bottom:16px
+    .app{max-width:1160px;margin:0 auto;padding:26px 18px 70px}
+    .hero{
+      background:#fff;border:1px solid var(--line);border-radius:24px;
+      box-shadow:var(--shadow);padding:26px 28px 24px;margin-bottom:18px
     }
-    .brand{font-weight:800;letter-spacing:-.02em}
-    .meta{color:var(--muted);font-size:14px}
-    .progress-wrap{
-      height:10px;background:#e9edf5;border-radius:999px;overflow:hidden;margin:14px 0 24px
+    .identity{
+      display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap
     }
+    .eyebrow{font-size:13px;font-weight:800;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+    h1{margin:6px 0 4px;font-size:clamp(30px,4.8vw,50px);letter-spacing:-.04em;line-height:1.05}
+    .name{font-size:21px;font-weight:800;margin-top:10px}
+    .course{color:var(--muted);margin-top:4px}
+    .madeby{
+      padding:14px 16px;border-radius:16px;background:var(--accent-soft);
+      min-width:min(100%,330px);font-size:14px;line-height:1.55
+    }
+    .madeby b{display:block;color:var(--accent);font-size:15px;margin-bottom:3px}
+    .tech{color:#475467}
+    .top-controls{display:flex;gap:10px;align-items:center;margin-top:18px;flex-wrap:wrap}
+    .progress-shell{flex:1;min-width:240px;height:10px;background:#e9edf5;border-radius:999px;overflow:hidden}
     .progress{height:100%;width:0;background:var(--accent);transition:width .35s ease}
-    .card{
-      background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
-      box-shadow:var(--shadow)
-    }
-    .stage{padding:30px}
-    .step-tag{
-      display:inline-flex;align-items:center;gap:8px;
-      font-size:13px;font-weight:800;color:var(--accent);
-      background:var(--accent-soft);padding:7px 11px;border-radius:999px
-    }
-    h1,h2,h3{letter-spacing:-.03em;margin:0}
-    h1{font-size:clamp(30px,5vw,54px);line-height:1.05;margin-top:18px}
-    h2{font-size:clamp(26px,4vw,40px);margin:14px 0 8px}
-    .lead{font-size:18px;line-height:1.65;color:#344054;max-width:850px}
-    .board{
-      margin-top:26px;padding:28px;border-radius:18px;background:#0f172a;color:white;
-      min-height:280px;display:flex;flex-direction:column;justify-content:center;gap:18px
-    }
-    .board .line{
-      opacity:0;transform:translateY(8px);transition:.35s ease;
-      font-size:clamp(22px,3.8vw,38px);line-height:1.35
-    }
-    .board .line.show{opacity:1;transform:none}
-    .board .small{font-size:clamp(17px,2.4vw,24px);color:#cbd5e1}
-    .explain{
-      margin-top:18px;padding:22px 24px;border-left:5px solid var(--accent);
-      background:#f8faff;border-radius:16px
-    }
-    .explain h3{font-size:16px;margin-bottom:8px;color:var(--accent)}
-    .explain p{margin:0;font-size:18px;line-height:1.65}
-    .controls{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      margin-top:18px;flex-wrap:wrap
-    }
+    .count{font-size:14px;color:var(--muted);min-width:92px;text-align:right}
+    .toolbar{display:flex;gap:8px}
     button{
-      border:0;border-radius:14px;padding:13px 18px;font-size:16px;font-weight:800;cursor:pointer;
-      transition:.2s ease
+      border:0;border-radius:13px;padding:12px 16px;font-size:15px;font-weight:800;
+      cursor:pointer;transition:.18s ease
     }
-    .primary{background:var(--accent);color:white}
+    .primary{background:var(--accent);color:#fff}
     .primary:hover{transform:translateY(-1px)}
     .secondary{background:#eef1f6;color:#344054}
-    .secondary:disabled{opacity:.45;cursor:not-allowed}
-    .hint{color:var(--muted);font-size:13px}
-    .grid{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px
+    .ghost{background:#fff;border:1px solid var(--line);color:#475467}
+    button:disabled{opacity:.48;cursor:not-allowed;transform:none!important}
+    .presentation{
+      background:#fff;border:1px solid var(--line);border-radius:24px;
+      box-shadow:var(--shadow);padding:28px
     }
-    .mini{
-      border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff
+    .intro{
+      padding:4px 2px 18px;border-bottom:1px solid var(--line);margin-bottom:20px
     }
-    .mini b{display:block;margin-bottom:4px}
-    .mini span{color:var(--muted);font-size:14px}
-    .done{color:var(--ok);font-weight:800}
-    .camera{
-      position:fixed;right:18px;bottom:18px;background:#101828;color:white;
-      padding:10px 14px;border-radius:999px;font-size:13px;box-shadow:var(--shadow)
+    .intro p{font-size:18px;line-height:1.65;color:#344054;max-width:900px;margin:10px 0 0}
+    .step{
+      display:none;
+      border:1px solid var(--line);border-radius:18px;padding:24px;
+      margin:16px 0;background:#fff;animation:reveal .42s ease
     }
-    @media (max-width:760px){
-      .grid{grid-template-columns:1fr}
-      .stage{padding:20px}
-      .board{padding:20px;min-height:250px}
+    .step.visible{display:block}
+    @keyframes reveal{
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:none}
+    }
+    .step-head{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap
+    }
+    .step-tag{
+      display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--accent-soft);
+      color:var(--accent);font-size:12px;font-weight:900;letter-spacing:.05em
+    }
+    h2{margin:10px 0 4px;font-size:clamp(24px,3.5vw,36px);letter-spacing:-.03em}
+    .status{font-size:13px;font-weight:800;color:var(--ok)}
+    .math-board{
+      margin-top:18px;padding:24px;border-radius:16px;background:var(--dark);color:#fff;
+      display:grid;gap:16px
+    }
+    .math-line{font-size:clamp(21px,3vw,34px);line-height:1.35}
+    .math-note{font-size:16px;color:#cbd5e1;line-height:1.55}
+    .points{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px
+    }
+    .point{padding:12px 14px;border-radius:13px;background:#f8fafc;border:1px solid var(--line)}
+    .point b{display:block;font-size:13px;margin-bottom:3px}
+    .point span{font-size:14px;color:var(--muted)}
+    .graph-wrap{
+      margin-top:16px;border:1px solid var(--line);border-radius:16px;padding:16px;background:#fbfcfe
+    }
+    .graph-title{font-weight:800;margin-bottom:10px}
+    svg{width:100%;height:auto;display:block}
+    .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:9px;font-size:13px;color:var(--muted)}
+    .completion{
+      display:none;margin-top:20px;padding:28px;border:2px solid #b7dfc7;border-radius:18px;
+      background:#f2fbf5;text-align:center
+    }
+    .completion.show{display:block;animation:reveal .42s ease}
+    .completion .check{font-size:44px;line-height:1}
+    .completion h2{color:var(--ok)}
+    .bottom-nav{
+      position:sticky;bottom:14px;margin-top:22px;padding:12px;
+      background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
+      border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);
+      display:flex;justify-content:space-between;gap:10px;align-items:center
+    }
+    .hint{font-size:13px;color:var(--muted);text-align:center;flex:1}
+    .presenter-launch{
+      position:fixed;right:18px;bottom:18px;width:46px;height:46px;border-radius:50%;
+      background:#111827;color:white;border:1px solid rgba(255,255,255,.15);
+      display:grid;place-items:center;font-size:19px;box-shadow:var(--shadow);z-index:20
+    }
+    .presenter-launch:hover{transform:translateY(-1px)}
+    @media(max-width:760px){
+      .hero,.presentation{padding:20px}
+      .points{grid-template-columns:1fr}
+      .bottom-nav{bottom:8px}
+      .hint{display:none}
+      .madeby{width:100%}
+    }
+    @media print{
+      .presenter-launch,.bottom-nav,.toolbar{display:none!important}
+      .step{display:block!important}
+      .completion{display:block!important}
+      body{background:#fff}
+      .hero,.presentation{box-shadow:none}
     }
   </style>
 </head>
 <body>
   <main class="app">
-    <div class="topbar">
-      <div>
-        <div class="brand">Cálculo Integral · Actividad 2</div>
-        <div class="meta">David Alejandro Spencer · Ingeniería en Ciencia de Datos</div>
-      </div>
-      <div class="meta" id="counter">Paso 1 de 8</div>
-    </div>
-
-    <div class="progress-wrap"><div class="progress" id="progress"></div></div>
-
-    <section class="card stage">
-      <span class="step-tag" id="tag">INTRODUCCIÓN</span>
-      <h1 id="title">Integral indefinida: una familia de antiderivadas</h1>
-      <p class="lead" id="lead"></p>
-
-      <div class="board" id="board"></div>
-
-      <div class="explain">
-        <h3>GUION PARA DECIR EN EL VIDEO</h3>
-        <p id="script"></p>
+    <header class="hero">
+      <div class="identity">
+        <div>
+          <div class="eyebrow">Cálculo Integral · Actividad 2</div>
+          <h1>Análisis conceptual de la integral indefinida</h1>
+          <div class="name">David Alejandro Spencer</div>
+          <div class="course">Ingeniería en Ciencia de Datos · Corporación Universitaria Iberoamericana</div>
+        </div>
+        <div class="madeby">
+          <b>Plataforma desarrollada por David Alejandro Spencer</b>
+          <div class="tech">Tecnologías utilizadas: HTML5 · CSS3 · JavaScript · MathJax · SVG</div>
+        </div>
       </div>
 
-      <div class="grid" id="checklist"></div>
+      <div class="top-controls">
+        <div class="progress-shell"><div class="progress" id="progress"></div></div>
+        <div class="count" id="counter">0 de 9</div>
+        <div class="toolbar">
+          <button class="ghost" id="showAll">Ver todo</button>
+        </div>
+      </div>
+    </header>
 
-      <div class="controls">
+    <section class="presentation" id="presentation">
+      <div class="intro">
+        <div class="eyebrow">Desarrollo de la actividad</div>
+        <p>
+          La integral indefinida representa el conjunto de todas las antiderivadas de una función.
+          En este desarrollo se trabajan las dos funciones seleccionadas en la actividad:
+          una función polinómica y una función trigonométrica.
+        </p>
+      </div>
+
+      <article class="step" data-step="1">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">1 · CONCEPTO</span>
+            <h2>Integral indefinida y antiderivada</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(F'(x)=f(x)\)</div>
+          <div class="math-line">\(\int f(x)\,dx = F(x)+C\)</div>
+          <div class="math-note">Si F es una antiderivada de f, entonces F + C también lo es porque la derivada de una constante es cero.</div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Objeto matemático</b><span>Familia de antiderivadas</span></div>
+          <div class="point"><b>Condición</b><span>F debe ser derivable</span></div>
+          <div class="point"><b>Constante</b><span>C ∈ ℝ</span></div>
+        </div>
+      </article>
+
+      <article class="step" data-step="2">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">2 · FUNCIÓN POLINÓMICA</span>
+            <h2>Primera función: f₁(x) = 2x</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(f_1(x)=2x\)</div>
+          <div class="math-note">Familia polinómica. Es continua y derivable para todo número real.</div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Familia</b><span>Polinómica</span></div>
+          <div class="point"><b>Continuidad</b><span>En todo ℝ</span></div>
+          <div class="point"><b>Derivabilidad</b><span>En todo ℝ</span></div>
+        </div>
+      </article>
+
+      <article class="step" data-step="3">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">3 · INTEGRACIÓN</span>
+            <h2>Integral de 2x</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(\int 2x\,dx = 2\int x\,dx\)</div>
+          <div class="math-line">\(=2\left(\frac{x^2}{2}\right)+C\)</div>
+          <div class="math-line">\(=x^2+C\)</div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Regla</b><span>Inversa de la potencia</span></div>
+          <div class="point"><b>Antiderivada</b><span>x² + C</span></div>
+          <div class="point"><b>Conjunto solución</b><span>{x² + C : C ∈ ℝ}</span></div>
+        </div>
+      </article>
+
+      <article class="step" data-step="4">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">4 · VERIFICACIÓN</span>
+            <h2>Comprobación por derivación</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(F(x)=x^2+C\)</div>
+          <div class="math-line">\(F'(x)=2x+0\)</div>
+          <div class="math-line">\(F'(x)=2x\;\checkmark\)</div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Derivada de x²</b><span>2x</span></div>
+          <div class="point"><b>Derivada de C</b><span>0</span></div>
+          <div class="point"><b>Resultado</b><span>Se recupera f₁(x)</span></div>
+        </div>
+      </article>
+
+      <article class="step" data-step="5">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">5 · FUNCIÓN TRIGONOMÉTRICA</span>
+            <h2>Segunda función: f₂(x) = sen(x)</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(f_2(x)=\sin(x)\)</div>
+          <div class="math-line">\(\int \sin(x)\,dx=-\cos(x)+C\)</div>
+          <div class="math-note">La derivada de −cos(x) es sen(x), por eso −cos(x) es una antiderivada de sen(x).</div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Familia</b><span>Trigonométrica</span></div>
+          <div class="point"><b>Antiderivada</b><span>−cos(x) + C</span></div>
+          <div class="point"><b>Conjunto solución</b><span>{−cos(x)+C : C ∈ ℝ}</span></div>
+        </div>
+      </article>
+
+      <article class="step" data-step="6">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">6 · VERIFICACIÓN</span>
+            <h2>Comprobación de la función trigonométrica</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(G(x)=-\cos(x)+C\)</div>
+          <div class="math-line">\(G'(x)=\sin(x)+0\)</div>
+          <div class="math-line">\(G'(x)=\sin(x)\;\checkmark\)</div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Derivada</b><span>sen(x)</span></div>
+          <div class="point"><b>Constante</b><span>Desaparece al derivar</span></div>
+          <div class="point"><b>Resultado</b><span>Se recupera f₂(x)</span></div>
+        </div>
+      </article>
+
+      <article class="step" data-step="7">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">7 · CONSTANTE DE INTEGRACIÓN</span>
+            <h2>Por qué aparece C</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(x^2,\quad x^2+2,\quad x^2-5\)</div>
+          <div class="math-line">\(\frac{d}{dx}(x^2+C)=2x\)</div>
+          <div class="math-note">Distintos valores de C producen funciones diferentes, pero todas conservan la misma derivada.</div>
+        </div>
+        <div class="graph-wrap">
+          <div class="graph-title">Efecto gráfico de la constante C</div>
+          <svg id="graph" viewBox="0 0 760 330" role="img" aria-label="Familia de parábolas x cuadrado más C">
+            <line x1="40" y1="165" x2="730" y2="165" stroke="#98a2b3" stroke-width="1.3"/>
+            <line x1="385" y1="25" x2="385" y2="305" stroke="#98a2b3" stroke-width="1.3"/>
+            <path id="curveA" fill="none" stroke="#3157d5" stroke-width="3"/>
+            <path id="curveB" fill="none" stroke="#14804a" stroke-width="3"/>
+            <path id="curveC" fill="none" stroke="#b54708" stroke-width="3"/>
+          </svg>
+          <div class="legend">
+            <span>x² + 2</span><span>x²</span><span>x² − 2</span>
+          </div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Impacto analítico</b><span>C identifica cada miembro de la familia</span></div>
+          <div class="point"><b>Impacto gráfico</b><span>Traslación vertical</span></div>
+          <div class="point"><b>Error frecuente</b><span>Omitir + C</span></div>
+        </div>
+      </article>
+
+      <article class="step" data-step="8">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">8 · INTERPRETACIÓN</span>
+            <h2>Enfoque algorítmico y enfoque conceptual</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="points">
+          <div class="point"><b>Algorítmico</b><span>Reconocer la forma, aplicar una regla y calcular.</span></div>
+          <div class="point"><b>Conceptual</b><span>Entender qué familia de funciones tiene la derivada dada.</span></div>
+          <div class="point"><b>Conclusión</b><span>Ambos enfoques se complementan.</span></div>
+        </div>
+        <div class="math-board">
+          <div class="math-note">
+            La integral indefinida no es una función única. Para f(x)=2x, las funciones x², x²+7 y x²−100 tienen exactamente la misma derivada.
+          </div>
+        </div>
+      </article>
+
+      <article class="step" data-step="9">
+        <div class="step-head">
+          <div>
+            <span class="step-tag">9 · TEOREMA FUNDAMENTAL DEL CÁLCULO</span>
+            <h2>Relación entre integral indefinida e integral definida</h2>
+          </div>
+          <span class="status">Completado</span>
+        </div>
+        <div class="math-board">
+          <div class="math-line">\(A(x)=\int_a^x f(t)\,dt\Rightarrow A'(x)=f(x)\)</div>
+          <div class="math-line">\(\int_a^b f(x)\,dx=F(b)-F(a)\)</div>
+          <div class="math-note">La integral indefinida describe una familia de antiderivadas. La integral definida produce un valor numérico de acumulación y la constante C se cancela al evaluar los extremos.</div>
+        </div>
+        <div class="points">
+          <div class="point"><b>Indefinida</b><span>Familia de funciones</span></div>
+          <div class="point"><b>Definida</b><span>Valor numérico</span></div>
+          <div class="point"><b>Conexión</b><span>Teorema Fundamental del Cálculo</span></div>
+        </div>
+      </article>
+
+      <section class="completion" id="completion">
+        <div class="check">✓</div>
+        <h2>Actividad terminada</h2>
+        <p>Se completó el desarrollo de las dos funciones, la verificación por derivación, el análisis de la constante de integración y la relación con el Teorema Fundamental del Cálculo.</p>
+      </section>
+
+      <div class="bottom-nav">
         <button class="secondary" id="prev">← Anterior</button>
-        <span class="hint">También puedes usar ← → o la barra espaciadora</span>
-        <button class="primary" id="next">Empezar →</button>
+        <div class="hint">Avanza con los botones o con las flechas del teclado. El contenido anterior permanece visible.</div>
+        <button class="primary" id="next">Comenzar →</button>
       </div>
     </section>
   </main>
 
-  <div class="camera">Modo guía para grabación</div>
+  <button class="presenter-launch" id="presenterBtn" title="Abrir guion del expositor en otra ventana">🎙</button>
 
-<script>
-const steps = [
-  {
-    tag:'INTRODUCCIÓN',
-    title:'Integral indefinida: una familia de antiderivadas',
-    lead:'Idea principal que debes presentar antes de entrar a los ejercicios.',
-    lines:[
-      '<div class="small">Si una función F cumple que su derivada es f...</div>',
-      '<div>\\(F\'(x)=f(x)\\)</div>',
-      '<div>\\(\\int f(x)\\,dx = F(x)+C\\)</div>'
-    ],
-    script:'En esta actividad voy a explicar la integral indefinida como una familia de antiderivadas. Una antiderivada es una función que, al derivarla, vuelve a producir la función original. Por eso la integral indefinida no da una sola respuesta. Da una familia completa, y esa familia se representa con la constante C.',
-    checks:[['Concepto','Antiderivada'],['Idea clave','Familia de funciones'],['Elemento','Constante C']]
-  },
-  {
-    tag:'FUNCIÓN 1 · PASO 1',
-    title:'Primera función: f₁(x) = 2x',
-    lead:'Comienza identificando la familia y la regla que vas a usar.',
-    lines:[
-      '<div>\\(f_1(x)=2x\\)</div>',
-      '<div class="small">Familia: polinómica</div>',
-      '<div class="small">Es continua y derivable en todo \\(\\mathbb{R}\\)</div>'
-    ],
-    script:'La primera función que escogí es f de x igual a 2x. Es una función polinómica. Es continua y derivable para todos los números reales, así que puedo trabajar su integral indefinida sin problema.',
-    checks:[['Función','2x'],['Familia','Polinómica'],['Dominio','ℝ']]
-  },
-  {
-    tag:'FUNCIÓN 1 · PASO 2',
-    title:'Integramos 2x paso a paso',
-    lead:'Muestra primero la regla y después simplifica.',
-    lines:[
-      '<div>\\(\\int 2x\\,dx = 2\\int x\\,dx\\)</div>',
-      '<div>\\(=2\\left(\\frac{x^2}{2}\\right)+C\\)</div>',
-      '<div>\\(=x^2+C\\)</div>'
-    ],
-    script:'Ahora integro 2x. Saco el 2 como constante y aplico la regla inversa de la potencia. La integral de x es x al cuadrado dividido entre 2. Al multiplicar por 2, los dos se simplifican. El resultado final es x al cuadrado más C.',
-    checks:[['Regla','Potencia'],['Resultado','x² + C'],['Clave','No olvidar C']]
-  },
-  {
-    tag:'FUNCIÓN 1 · VERIFICACIÓN',
-    title:'Comprobamos derivando',
-    lead:'La forma más clara de comprobar una antiderivada es volver a derivarla.',
-    lines:[
-      '<div>\\(F(x)=x^2+C\\)</div>',
-      '<div>\\(F\'(x)=2x+0\\)</div>',
-      '<div>\\(F\'(x)=2x\\) <span class="done">✓</span></div>'
-    ],
-    script:'Para comprobar que el resultado es correcto, derivo x al cuadrado más C. La derivada de x al cuadrado es 2x y la derivada de la constante es cero. Entonces regreso exactamente a la función original, 2x. Esa verificación confirma que x al cuadrado más C es la familia de antiderivadas.',
-    checks:[['Derivada de x²','2x'],['Derivada de C','0'],['Resultado','Coincide']]
-  },
-  {
-    tag:'FUNCIÓN 2 · PASO 1',
-    title:'Segunda función: f₂(x) = sen(x)',
-    lead:'Ahora cambia de familia funcional para mostrar el mismo concepto.',
-    lines:[
-      '<div>\\(f_2(x)=\\sin(x)\\)</div>',
-      '<div class="small">Familia: trigonométrica</div>',
-      '<div>\\(\\int \\sin(x)\\,dx = -\\cos(x)+C\\)</div>'
-    ],
-    script:'La segunda función es seno de x y pertenece a la familia trigonométrica. Aquí uso una relación básica de derivadas. Como la derivada de menos coseno de x es seno de x, entonces la integral de seno de x es menos coseno de x más C.',
-    checks:[['Función','sen(x)'],['Familia','Trigonométrica'],['Resultado','−cos(x)+C']]
-  },
-  {
-    tag:'FUNCIÓN 2 · VERIFICACIÓN',
-    title:'Verificación de la función trigonométrica',
-    lead:'Repite la comprobación para reforzar que integrar y derivar son procesos inversos.',
-    lines:[
-      '<div>\\(G(x)=-\\cos(x)+C\\)</div>',
-      '<div>\\(G\'(x)=\\sin(x)+0\\)</div>',
-      '<div>\\(G\'(x)=\\sin(x)\\) <span class="done">✓</span></div>'
-    ],
-    script:'También puedo verificar este resultado derivándolo. La derivada de menos coseno de x es seno de x y la derivada de C es cero. Otra vez vuelvo a la función inicial. Esto muestra que el resultado no depende de memorizar una fórmula, sino de comprobar la relación entre derivada y antiderivada.',
-    checks:[['Derivada','sen(x)'],['Constante','Desaparece'],['Resultado','Coincide']]
-  },
-  {
-    tag:'CONSTANTE DE INTEGRACIÓN',
-    title:'¿Por qué aparece C?',
-    lead:'Este es el punto conceptual más importante del trabajo.',
-    lines:[
-      '<div>\\(x^2\\)</div>',
-      '<div>\\(x^2+2\\)</div>',
-      '<div>\\(x^2-5\\)</div>',
-      '<div class="small">Todas tienen derivada \\(2x\\)</div>'
-    ],
-    script:'La constante C aparece porque al derivar se pierde cualquier constante. Por ejemplo, x al cuadrado, x al cuadrado más 2 y x al cuadrado menos 5 tienen exactamente la misma derivada: 2x. Por eso no puedo decir que existe una única antiderivada. Existen infinitas y la letra C resume todas esas posibilidades. Gráficamente, C solo mueve la curva hacia arriba o hacia abajo.',
-    checks:[['C','Cualquier real'],['Efecto gráfico','Traslación vertical'],['Derivada','No cambia']]
-  },
-  {
-    tag:'CIERRE',
-    title:'Conclusión: calcular y comprender',
-    lead:'Cierra conectando procedimiento, concepto y Teorema Fundamental del Cálculo.',
-    lines:[
-      '<div>\\(\\int f(x)\\,dx = F(x)+C\\)</div>',
-      '<div class="small">Indefinida → familia de antiderivadas</div>',
-      '<div class="small">Definida → valor numérico de acumulación</div>',
-      '<div>\\(\\int_a^b f(x)\\,dx=F(b)-F(a)\\)</div>'
-    ],
-    script:'Para cerrar, el enfoque algorítmico me dice qué regla aplicar, pero el enfoque conceptual me permite entender qué significa el resultado. La integral indefinida representa una familia de antiderivadas, mientras que la integral definida produce un valor numérico de acumulación. El Teorema Fundamental del Cálculo conecta ambas ideas porque permite calcular una integral definida usando una antiderivada.',
-    checks:[['Indefinida','Familia'],['Definida','Valor numérico'],['Conexión','Teorema Fundamental']]
-  }
-];
+  <script>
+    const scripts = [
+      "En esta actividad voy a explicar la integral indefinida como una familia de antiderivadas. Una antiderivada es una función que, al derivarla, vuelve a producir la función original. Por eso la integral indefinida no da una sola respuesta, sino una familia completa representada con la constante C.",
+      "La primera función que escogí es f de x igual a 2x. Es una función polinómica, continua y derivable para todos los números reales. Por eso cumple las condiciones necesarias para trabajar su integral indefinida.",
+      "Ahora integro 2x. Saco el 2 como constante y aplico la regla inversa de la potencia. La integral de x es x al cuadrado dividido entre 2. Al multiplicar por 2 se simplifica y queda x al cuadrado más C. Esa C representa todas las antiderivadas posibles.",
+      "Para comprobar el resultado derivo x al cuadrado más C. La derivada de x al cuadrado es 2x y la derivada de la constante es cero. Entonces regreso a la función original y verifico que el procedimiento es correcto.",
+      "La segunda función es seno de x y pertenece a la familia trigonométrica. Como la derivada de menos coseno de x es seno de x, su integral indefinida es menos coseno de x más C.",
+      "También verifico esta función derivando el resultado. La derivada de menos coseno de x es seno de x y la constante desaparece. De nuevo obtengo exactamente la función de partida.",
+      "La constante C es importante porque al derivar cualquier constante desaparece. Por ejemplo, x al cuadrado, x al cuadrado más 2 y x al cuadrado menos 5 tienen la misma derivada. En la gráfica se ve que C solo mueve la curva hacia arriba o hacia abajo sin cambiar su forma ni sus pendientes.",
+      "El enfoque algorítmico me ayuda a saber qué regla aplicar y cómo hacer el cálculo. El enfoque conceptual me permite entender qué significa el resultado. La integral indefinida no es una función única, porque existen infinitas funciones que comparten la misma derivada.",
+      "Finalmente, el Teorema Fundamental del Cálculo conecta la derivación y la integración. La integral indefinida representa una familia de antiderivadas, mientras que la integral definida produce un valor numérico. Cuando evaluamos F de b menos F de a, la constante C se cancela."
+    ];
 
-let current = 0;
-const board = document.getElementById('board');
-const title = document.getElementById('title');
-const lead = document.getElementById('lead');
-const tag = document.getElementById('tag');
-const script = document.getElementById('script');
-const counter = document.getElementById('counter');
-const progress = document.getElementById('progress');
-const checklist = document.getElementById('checklist');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
+    let current = 0;
+    const total = 9;
+    const progress = document.getElementById('progress');
+    const counter = document.getElementById('counter');
+    const next = document.getElementById('next');
+    const prev = document.getElementById('prev');
+    const completion = document.getElementById('completion');
+    const steps = [...document.querySelectorAll('.step')];
+    let presenterWindow = null;
 
-function renderStep(index){
-  const s = steps[index];
-  tag.textContent = s.tag;
-  title.textContent = s.title;
-  lead.textContent = s.lead;
-  script.textContent = s.script;
-  counter.textContent = `Paso ${index+1} de ${steps.length}`;
-  progress.style.width = `${((index+1)/steps.length)*100}%`;
-  board.innerHTML = s.lines.map((line,i)=>`<div class="line" style="transition-delay:${i*110}ms">${line}</div>`).join('');
-  checklist.innerHTML = s.checks.map(([a,b])=>`<div class="mini"><b>${a}</b><span>${b}</span></div>`).join('');
-  requestAnimationFrame(()=>document.querySelectorAll('.board .line').forEach(el=>el.classList.add('show')));
-  prev.disabled = index === 0;
-  next.textContent = index === steps.length-1 ? 'Volver al inicio ↺' : (index === 0 ? 'Empezar →' : 'Siguiente →');
-  if(window.MathJax?.typesetPromise){ MathJax.typesetPromise([board]); }
-}
-function goNext(){
-  if(current < steps.length-1) current++;
-  else current = 0;
-  renderStep(current);
-}
-function goPrev(){
-  if(current>0){ current--; renderStep(current); }
-}
-next.addEventListener('click',goNext);
-prev.addEventListener('click',goPrev);
-document.addEventListener('keydown',(e)=>{
-  if(e.key==='ArrowRight' || e.code==='Space'){ e.preventDefault(); goNext(); }
-  if(e.key==='ArrowLeft'){ e.preventDefault(); goPrev(); }
-});
-renderStep(current);
-</script>
+    function revealTo(n){
+      current = Math.max(0, Math.min(total, n));
+      steps.forEach((el, i) => el.classList.toggle('visible', i < current));
+      progress.style.width = (current / total * 100) + '%';
+      counter.textContent = current + ' de ' + total;
+      prev.disabled = current === 0;
+
+      if(current === 0){
+        next.disabled = false;
+        next.textContent = 'Comenzar →';
+        completion.classList.remove('show');
+      } else if(current === total){
+        next.textContent = 'Actividad terminada ✓';
+        next.disabled = true;
+        completion.classList.add('show');
+      } else {
+        next.disabled = false;
+        next.textContent = 'Siguiente →';
+        completion.classList.remove('show');
+      }
+
+      if(current > 0){
+        const target = steps[current - 1];
+        setTimeout(() => target.scrollIntoView({behavior:'smooth', block:'center'}), 80);
+      }
+
+      updatePresenter();
+      if(window.MathJax?.typesetPromise){
+        MathJax.typesetPromise();
+      }
+    }
+
+    function nextStep(){
+      if(current < total) revealTo(current + 1);
+    }
+    function prevStep(){
+      if(current > 0) revealTo(current - 1);
+    }
+
+    next.addEventListener('click', nextStep);
+    prev.addEventListener('click', prevStep);
+
+    document.getElementById('showAll').addEventListener('click', () => revealTo(total));
+
+    document.addEventListener('keydown', e => {
+      if(e.key === 'ArrowRight' || e.code === 'Space'){
+        e.preventDefault();
+        nextStep();
+      }
+      if(e.key === 'ArrowLeft'){
+        e.preventDefault();
+        prevStep();
+      }
+      if(e.key.toLowerCase() === 'g'){
+        openPresenter();
+      }
+    });
+
+    function presenterHTML(){
+      return `<!doctype html>
+      <html lang="es"><head><meta charset="utf-8"><title>Guion del expositor</title>
+      <style>
+      body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:0;background:#111827;color:#f8fafc}
+      main{padding:26px}
+      .kicker{font-size:12px;font-weight:800;letter-spacing:.08em;color:#93c5fd;text-transform:uppercase}
+      h1{font-size:26px;margin:8px 0 18px}
+      .script{font-size:22px;line-height:1.55;background:#1f2937;border-radius:16px;padding:20px}
+      .nav{display:flex;gap:8px;margin-top:14px}
+      button{border:0;border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer}
+      .small{color:#94a3b8;font-size:13px;margin-top:14px}
+      </style></head>
+      <body><main>
+      <div class="kicker">Panel privado del expositor</div>
+      <h1 id="ptitle">Guion</h1>
+      <div class="script" id="pscript"></div>
+      <div class="nav">
+        <button onclick="window.opener.presenterPrev()">← Anterior</button>
+        <button onclick="window.opener.presenterNext()">Siguiente →</button>
+      </div>
+      <div class="small">Esta ventana es independiente de la presentación principal. Puedes colocarla fuera del área que estás grabando.</div>
+      </main></body></html>`;
+    }
+
+    function openPresenter(){
+      presenterWindow = window.open('', 'guionExpositor', 'width=480,height=680,left=1180,top=80');
+      if(!presenterWindow) return;
+      presenterWindow.document.open();
+      presenterWindow.document.write(presenterHTML());
+      presenterWindow.document.close();
+      updatePresenter();
+    }
+
+    function updatePresenter(){
+      if(!presenterWindow || presenterWindow.closed) return;
+      const idx = Math.max(0, Math.min(total - 1, current === 0 ? 0 : current - 1));
+      const title = current === 0 ? 'Introducción' : steps[idx].querySelector('h2').textContent;
+      const t = presenterWindow.document.getElementById('ptitle');
+      const s = presenterWindow.document.getElementById('pscript');
+      if(t) t.textContent = 'Paso ' + (idx + 1) + ': ' + title;
+      if(s) s.textContent = scripts[idx];
+    }
+
+    window.presenterNext = () => { nextStep(); updatePresenter(); };
+    window.presenterPrev = () => { prevStep(); updatePresenter(); };
+    document.getElementById('presenterBtn').addEventListener('click', openPresenter);
+
+    function drawParabolas(){
+      const mapX = x => 385 + x * 70;
+      const mapY = y => 165 - y * 26;
+      function pathFor(c){
+        let d = '';
+        for(let x=-4.5;x<=4.5;x+=0.08){
+          const y = 0.22*x*x + c;
+          d += (d ? ' L ' : 'M ') + mapX(x).toFixed(2) + ' ' + mapY(y).toFixed(2);
+        }
+        return d;
+      }
+      document.getElementById('curveA').setAttribute('d', pathFor(2));
+      document.getElementById('curveB').setAttribute('d', pathFor(0));
+      document.getElementById('curveC').setAttribute('d', pathFor(-2));
+    }
+
+    drawParabolas();
+    revealTo(0);
+  </script>
 </body>
 </html>
