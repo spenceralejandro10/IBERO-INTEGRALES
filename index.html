@@ -1,41 +1,335 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Actividad 2 · Integral indefinida · David Alejandro Spencer</title><style>
-:root{--bg:#eef2f7;--white:#fff;--ink:#172033;--muted:#667085;--line:#d8e0eb;--accent:#3157d5;--board:#0f172a;--panel:#f8fafc;--green:#1d8b52}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(#fafbff,#eef2f7);color:var(--ink)}.app{max-width:1500px;margin:auto;padding:18px}.head{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin-bottom:14px;box-shadow:0 14px 40px #14203318}.headgrid{display:grid;grid-template-columns:1fr auto;gap:18px}.eyebrow{font-size:12px;font-weight:900;color:var(--accent);letter-spacing:.07em;text-transform:uppercase}h1{font-size:clamp(28px,4vw,46px);line-height:1.05;margin:6px 0;letter-spacing:-.04em}.name{font-size:21px;font-weight:850;margin-top:9px}.course{color:var(--muted);margin-top:3px}.dev{background:#eef2ff;border-radius:15px;padding:13px 15px;min-width:320px;font-size:14px;line-height:1.45}.dev b{display:block;color:var(--accent);margin-bottom:3px}.progrow{display:flex;gap:12px;align-items:center;margin-top:16px}.track{height:9px;background:#e7ebf2;border-radius:999px;overflow:hidden;flex:1}.bar{height:100%;width:0;background:var(--accent);transition:.3s}.count{font-size:13px;color:var(--muted);min-width:74px;text-align:right}
-.workspace{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(320px,.8fr);border:1px solid #172033;border-radius:22px;overflow:hidden;box-shadow:0 18px 48px #1420331a;min-height:700px}.board{background:linear-gradient(#0f172a,#0b1220);color:#fff;padding:24px;min-height:700px}.boardhead{display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid #2a3649;padding-bottom:14px;margin-bottom:15px;position:sticky;top:0;background:#0f172af2;z-index:5}.boardtitle{font-size:18px;font-weight:850}.boardsub{font-size:13px;color:#94a3b8;margin-top:2px}.state{font-size:12px;font-weight:850;color:#b7f3cf;background:#1d8b5222;border:1px solid #b7f3cf22;border-radius:999px;padding:7px 10px;white-space:nowrap}.content{display:grid;gap:12px}.step{display:none;border:1px solid #2a3649;border-radius:15px;padding:17px;background:#ffffff08;animation:show .35s ease}.step.visible{display:block}@keyframes show{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}.tag{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:#9cb4ff;margin-bottom:6px}.step h2{font-size:clamp(20px,2.1vw,29px);margin:0 0 10px;letter-spacing:-.03em}.math{font-size:clamp(19px,2vw,29px);line-height:1.5;margin:5px 0}.note{color:#cbd5e1;font-size:15px;line-height:1.55}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px}.fact{background:#ffffff0a;border:1px solid #2a3649;border-radius:11px;padding:9px 10px}.fact b{display:block;font-size:12px;margin-bottom:2px}.fact span{color:#aeb8c8;font-size:13px}.graph{margin-top:12px;background:#0b1322;border:1px solid #2a3649;border-radius:13px;padding:10px}.graph svg{width:100%;height:auto;display:block}.graphcap{font-size:12px;color:#aeb8c8;margin-top:6px}.done{display:none;text-align:center;border:2px solid #37ca7360;background:#1d8b521d;border-radius:15px;padding:20px;margin-top:12px}.done.show{display:block;animation:show .35s}.done h2{color:#b7f3cf;margin:5px 0}.done p{color:#d7e7dd;margin:0;line-height:1.5}
-.side{background:var(--panel);border-left:1px solid var(--line);padding:22px;min-height:700px}.sticky{position:sticky;top:14px}.sidetag{font-size:12px;font-weight:900;color:var(--accent);letter-spacing:.07em;text-transform:uppercase}.side h2{font-size:24px;margin:8px 0 11px;letter-spacing:-.03em}.script{background:#fff;border:1px solid var(--line);border-radius:15px;padding:17px;font-size:19px;line-height:1.62;min-height:320px}.tip{margin-top:11px;background:#eef2f7;border-radius:11px;padding:10px 11px;font-size:12px;line-height:1.45;color:var(--muted)}
-.nav{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:11px;margin-top:14px;position:sticky;bottom:10px;box-shadow:0 12px 35px #14203318;z-index:20}.navnote{flex:1;text-align:center;color:var(--muted);font-size:13px}button{border:0;border-radius:12px;padding:11px 15px;font-size:15px;font-weight:850;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#eef1f6;color:#344054}button:disabled{opacity:.45;cursor:not-allowed}
-@media(max-width:980px){.headgrid,.workspace{grid-template-columns:1fr}.dev{min-width:0}.side{border-left:0;border-top:1px solid var(--line);min-height:auto}.sticky{position:static}.facts{grid-template-columns:1fr}}
-</style></head><body><main class="app">
-<header class="head"><div class="headgrid"><div><div class="eyebrow">Cálculo Integral · Actividad 2</div><h1>Análisis conceptual de la integral indefinida</h1><div class="name">David Alejandro Spencer</div><div class="course">Ingeniería en Ciencia de Datos · Corporación Universitaria Iberoamericana</div></div><div class="dev"><b>Plataforma desarrollada por David Alejandro Spencer</b>Tecnologías utilizadas: HTML5 · CSS3 · JavaScript · SVG</div></div><div class="progrow"><div class="track"><div class="bar" id="bar"></div></div><div class="count" id="count">0 de 9</div></div></header>
-<section class="workspace"><div class="board"><div class="boardhead"><div><div class="boardtitle">Pizarra de desarrollo</div><div class="boardsub">El ejercicio se completa paso a paso y lo anterior permanece visible.</div></div><div class="state" id="state">Listo para comenzar</div></div><div class="content">
-<article class="step"><div class="tag">1 · Concepto</div><h2>Integral indefinida y antiderivada</h2><div class="math">F′(x) = f(x)</div><div class="math">∫ f(x) dx = F(x) + C</div><div class="note">La integral indefinida representa una familia de antiderivadas y no una sola función.</div><div class="facts"><div class="fact"><b>Objeto matemático</b><span>Familia de antiderivadas</span></div><div class="fact"><b>Condición</b><span>F es derivable</span></div><div class="fact"><b>Constante</b><span>C ∈ ℝ</span></div></div></article>
-<article class="step"><div class="tag">2 · Función polinómica</div><h2>Primera función: f₁(x) = 2x</h2><div class="math">f₁(x) = 2x</div><div class="note">Función polinómica, continua y derivable para todo número real.</div><div class="facts"><div class="fact"><b>Familia</b><span>Polinómica</span></div><div class="fact"><b>Continuidad</b><span>En todo ℝ</span></div><div class="fact"><b>Derivabilidad</b><span>En todo ℝ</span></div></div></article>
-<article class="step"><div class="tag">3 · Integración</div><h2>Integral de 2x</h2><div class="math">∫ 2x dx = 2 ∫ x dx</div><div class="math">= 2(x²/2) + C</div><div class="math">= x² + C</div><div class="facts"><div class="fact"><b>Regla</b><span>Inversa de la potencia</span></div><div class="fact"><b>Antiderivada</b><span>x² + C</span></div><div class="fact"><b>Conjunto solución</b><span>{x² + C : C ∈ ℝ}</span></div></div></article>
-<article class="step"><div class="tag">4 · Verificación</div><h2>Comprobación por derivación</h2><div class="math">F(x) = x² + C</div><div class="math">F′(x) = 2x + 0</div><div class="math">F′(x) = 2x ✓</div><div class="note">Al derivar el resultado se recupera la función original.</div></article>
-<article class="step"><div class="tag">5 · Función trigonométrica</div><h2>Segunda función: f₂(x) = sen(x)</h2><div class="math">f₂(x) = sen(x)</div><div class="math">∫ sen(x) dx = −cos(x) + C</div><div class="note">La derivada de −cos(x) es sen(x), por eso −cos(x) es una antiderivada de sen(x).</div><div class="facts"><div class="fact"><b>Familia</b><span>Trigonométrica</span></div><div class="fact"><b>Antiderivada</b><span>−cos(x) + C</span></div><div class="fact"><b>Conjunto solución</b><span>{−cos(x)+C : C ∈ ℝ}</span></div></div></article>
-<article class="step"><div class="tag">6 · Verificación</div><h2>Comprobación de la función trigonométrica</h2><div class="math">G(x) = −cos(x) + C</div><div class="math">G′(x) = sen(x) + 0</div><div class="math">G′(x) = sen(x) ✓</div><div class="note">La constante desaparece al derivar y vuelve a aparecer la función inicial.</div></article>
-<article class="step"><div class="tag">7 · Constante de integración</div><h2>Por qué aparece C</h2><div class="math">x², &nbsp; x² + 2, &nbsp; x² − 5</div><div class="math">d/dx (x² + C) = 2x</div><div class="note">Distintos valores de C producen funciones diferentes, pero todas conservan la misma derivada.</div><div class="graph"><svg viewBox="0 0 760 300"><line x1="40" y1="150" x2="730" y2="150" stroke="#8190a5"/><line x1="385" y1="20" x2="385" y2="282" stroke="#8190a5"/><path id="a" fill="none" stroke="#7fa0ff" stroke-width="3"/><path id="b" fill="none" stroke="#65d393" stroke-width="3"/><path id="c" fill="none" stroke="#f0a36a" stroke-width="3"/></svg><div class="graphcap">Cambiar C desplaza la parábola verticalmente sin cambiar su derivada.</div></div><div class="facts"><div class="fact"><b>Impacto analítico</b><span>C distingue las soluciones</span></div><div class="fact"><b>Impacto gráfico</b><span>Traslación vertical</span></div><div class="fact"><b>Error frecuente</b><span>Omitir + C</span></div></div></article>
-<article class="step"><div class="tag">8 · Interpretación</div><h2>Enfoque algorítmico y enfoque conceptual</h2><div class="facts"><div class="fact"><b>Algorítmico</b><span>Reconocer la forma, aplicar la regla y calcular</span></div><div class="fact"><b>Conceptual</b><span>Entender qué familia tiene la derivada dada</span></div><div class="fact"><b>Conclusión</b><span>Los dos enfoques se complementan</span></div></div><div class="note" style="margin-top:12px">Para f(x)=2x, x², x²+7 y x²−100 tienen exactamente la misma derivada.</div></article>
-<article class="step"><div class="tag">9 · Teorema Fundamental del Cálculo</div><h2>Integral indefinida e integral definida</h2><div class="math">A(x) = ∫ₐˣ f(t) dt  ⇒  A′(x) = f(x)</div><div class="math">∫ₐᵇ f(x) dx = F(b) − F(a)</div><div class="note">La integral indefinida describe una familia de antiderivadas. La definida produce un valor numérico y la constante C se cancela al evaluar los extremos.</div><div class="facts"><div class="fact"><b>Indefinida</b><span>Familia de funciones</span></div><div class="fact"><b>Definida</b><span>Valor numérico</span></div><div class="fact"><b>Conexión</b><span>Teorema Fundamental del Cálculo</span></div></div></article>
-<section class="done" id="done"><div style="font-size:36px">✓</div><h2>Actividad terminada</h2><p>Se completaron las dos funciones, sus verificaciones, la constante de integración y la relación con el Teorema Fundamental del Cálculo.</p></section>
-</div></div>
-<aside class="side"><div class="sticky"><div class="sidetag">Guion de apoyo</div><h2 id="stitle">Introducción</h2><div class="script" id="script">Presiona “Comenzar” para iniciar. A medida que avances, la pizarra de la izquierda se irá completando y aquí aparecerá el guion correspondiente.</div><div class="tip">Esta columna está separada del ejercicio para que puedas leerla mientras explicas. Si grabas solo la zona izquierda, el profesor verá únicamente la pizarra.</div></div></aside></section>
-<div class="nav"><button class="secondary" id="prev">← Anterior</button><div class="navnote">Cada avance agrega contenido nuevo a la misma pizarra.</div><button class="primary" id="next">Comenzar →</button></div></main>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Actividad 2 · Integral indefinida · David Alejandro Spencer</title>
+<style>
+:root{
+  --bg:#eef2f7;--white:#fff;--ink:#172033;--muted:#667085;--line:#d8e0eb;
+  --accent:#3157d5;--accent2:#eef2ff;--board:#0f172a;--board2:#111827;
+  --boardline:#2a3649;--green:#1d8b52;--shadow:0 16px 44px rgba(20,31,51,.10)
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:linear-gradient(#fafbff,#eef2f7);color:var(--ink);overflow:hidden
+}
+.app{
+  height:100vh;max-width:1600px;margin:auto;padding:14px;
+  display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px
+}
+.header{
+  background:#fff;border:1px solid var(--line);border-radius:18px;
+  box-shadow:var(--shadow);padding:15px 18px
+}
+.header-grid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+.eyebrow{font-size:11px;font-weight:900;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+h1{font-size:clamp(25px,3vw,39px);line-height:1.05;margin:4px 0;letter-spacing:-.04em}
+.name{font-size:18px;font-weight:850;margin-top:7px}
+.course{font-size:13px;color:var(--muted);margin-top:2px}
+.dev{
+  min-width:320px;background:var(--accent2);border-radius:14px;padding:10px 13px;
+  font-size:12px;line-height:1.42
+}
+.dev b{display:block;color:var(--accent);font-size:13px;margin-bottom:2px}
+.progress-row{display:flex;align-items:center;gap:10px;margin-top:11px}
+.track{height:7px;flex:1;background:#e7ebf2;border-radius:999px;overflow:hidden}
+.bar{height:100%;width:0;background:var(--accent);transition:width .28s ease}
+.counter{font-size:12px;color:var(--muted);min-width:76px;text-align:right}
+
+.workspace{
+  min-height:0;display:grid;grid-template-columns:minmax(0,2.25fr) minmax(330px,.75fr);
+  border:1px solid #172033;border-radius:20px;overflow:hidden;box-shadow:var(--shadow)
+}
+.board-shell{
+  min-width:0;min-height:0;background:linear-gradient(180deg,var(--board),#0b1220);
+  color:white;display:flex;flex-direction:column
+}
+.board-top{
+  flex:0 0 auto;padding:14px 18px;border-bottom:1px solid var(--boardline);
+  background:rgba(15,23,42,.97)
+}
+.board-title{font-size:20px;font-weight:850;letter-spacing:-.02em}
+.board-meta{font-size:12px;color:#94a3b8;margin-top:2px}
+.board{
+  min-height:0;overflow:auto;padding:16px 18px 20px;scroll-behavior:smooth
+}
+.board::-webkit-scrollbar,.script-scroll::-webkit-scrollbar{width:8px}
+.board::-webkit-scrollbar-thumb,.script-scroll::-webkit-scrollbar-thumb{background:#46536a;border-radius:999px}
+.entry{
+  border:1px solid var(--boardline);background:rgba(255,255,255,.025);
+  border-radius:14px;padding:15px 16px;margin-bottom:11px;animation:show .35s ease
+}
+@keyframes show{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.entry .num{
+  font-size:10px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#9cb4ff;margin-bottom:5px
+}
+.entry h2{font-size:clamp(19px,1.8vw,27px);margin:0 0 9px;letter-spacing:-.03em}
+.entry p{font-size:14px;line-height:1.5;color:#d0d7e3;margin:7px 0}
+.math{font-size:clamp(19px,1.7vw,27px);line-height:1.48;margin:4px 0;color:#fff}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:10px}
+.fact{border:1px solid var(--boardline);background:rgba(255,255,255,.035);border-radius:10px;padding:8px 9px}
+.fact b{display:block;font-size:11px;margin-bottom:2px}
+.fact span{font-size:12px;color:#aeb8c8}
+.graph{margin-top:10px;border:1px solid var(--boardline);background:#0a1220;border-radius:12px;padding:9px}
+.graph svg{width:100%;height:160px;display:block}
+.graph-caption{font-size:11px;color:#aeb8c8;margin-top:5px}
+.finish{
+  display:none;border:2px solid rgba(55,202,115,.38);background:rgba(29,139,82,.12);
+  border-radius:14px;padding:17px;text-align:center
+}
+.finish.show{display:block;animation:show .35s}
+.finish h2{color:#b7f3cf;margin:4px 0 5px}
+.finish p{font-size:13px;line-height:1.5;color:#d7e7dd;margin:0}
+
+.script-side{
+  min-width:0;min-height:0;background:#f8fafc;border-left:1px solid var(--line);
+  display:flex;flex-direction:column
+}
+.script-head{
+  flex:0 0 auto;padding:14px 16px 10px;border-bottom:1px solid var(--line);background:#f8fafc
+}
+.script-label{font-size:11px;font-weight:900;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+.script-head h2{font-size:21px;margin:5px 0 0;letter-spacing:-.03em}
+.script-scroll{min-height:0;overflow:auto;padding:14px 16px 18px}
+.script-card{
+  background:white;border:1px solid var(--line);border-radius:14px;padding:16px;
+  font-size:17px;line-height:1.6
+}
+.script-card p{margin:0 0 12px}.script-card p:last-child{margin-bottom:0}
+.script-note{
+  margin-top:10px;font-size:11px;line-height:1.45;color:var(--muted);
+  background:#eef2f7;border-radius:10px;padding:8px 9px
+}
+
+.nav{
+  background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);
+  padding:9px 11px;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center
+}
+button{
+  border:0;border-radius:11px;padding:10px 14px;font-size:14px;font-weight:850;cursor:pointer
+}
+.primary{background:var(--accent);color:#fff}.secondary{background:#eef1f6;color:#344054}
+button:disabled{opacity:.45;cursor:not-allowed}
+.nav-center{text-align:center;font-size:12px;color:var(--muted)}
+
+@media(max-width:980px){
+  body{overflow:auto}.app{height:auto;min-height:100vh}
+  .header-grid{grid-template-columns:1fr}.dev{min-width:0}
+  .workspace{grid-template-columns:1fr;min-height:1000px}
+  .script-side{border-left:0;border-top:1px solid var(--line)}
+  .board{max-height:620px}.script-scroll{max-height:420px}.facts{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<main class="app">
+  <header class="header">
+    <div class="header-grid">
+      <div>
+        <div class="eyebrow">Cálculo Integral · Actividad 2</div>
+        <h1>Análisis conceptual de la integral indefinida</h1>
+        <div class="name">David Alejandro Spencer</div>
+        <div class="course">Ingeniería en Ciencia de Datos · Corporación Universitaria Iberoamericana</div>
+      </div>
+      <div class="dev">
+        <b>Plataforma desarrollada por David Alejandro Spencer</b>
+        Tecnologías utilizadas: HTML5 · CSS3 · JavaScript · SVG
+      </div>
+    </div>
+    <div class="progress-row">
+      <div class="track"><div class="bar" id="bar"></div></div>
+      <div class="counter" id="counter">0 de 9</div>
+    </div>
+  </header>
+
+  <section class="workspace">
+    <section class="board-shell">
+      <div class="board-top">
+        <div class="board-title">Análisis conceptual de la integral indefinida</div>
+        <div class="board-meta">David Alejandro Spencer · Actividad 2</div>
+      </div>
+      <div class="board" id="board">
+        <div id="entries"></div>
+        <section class="finish" id="finish">
+          <div style="font-size:34px">✓</div>
+          <h2>Actividad terminada</h2>
+          <p>Con este desarrollo presenté las dos funciones seleccionadas, comprobé sus antiderivadas y expliqué el papel de la constante de integración.</p>
+        </section>
+      </div>
+    </section>
+
+    <aside class="script-side">
+      <div class="script-head">
+        <div class="script-label">Guion de apoyo</div>
+        <h2 id="scriptTitle">Inicio</h2>
+      </div>
+      <div class="script-scroll" id="scriptScroll">
+        <div class="script-card" id="scriptCard">
+          Presiona “Comenzar” para iniciar la presentación.
+        </div>
+        <div class="script-note">Esta zona está separada de la actividad. Puedes dejarla fuera del encuadre de la grabación y usarla únicamente como apoyo mientras hablas.</div>
+      </div>
+    </aside>
+  </section>
+
+  <nav class="nav">
+    <button class="secondary" id="prev">← Anterior</button>
+    <div class="nav-center">Actividad 2 · Cálculo Integral</div>
+    <button class="primary" id="next">Comenzar →</button>
+  </nav>
+</main>
+
 <script>
-const scripts=[
-["Integral indefinida y antiderivada","En esta actividad voy a explicar la integral indefinida como una familia de antiderivadas. Una antiderivada es una función que, al derivarla, vuelve a producir la función original. Por eso la integral indefinida no da una sola respuesta. Da una familia completa y esa familia se representa con la constante C."],
-["Primera función: f₁(x) = 2x","La primera función que escogí es f de x igual a 2x. Es una función polinómica, continua y derivable para todos los números reales. Estas condiciones permiten trabajar su integral indefinida y comprobar después el resultado mediante la derivación."],
-["Integral de 2x","Ahora integro 2x. Saco el 2 como constante y aplico la regla inversa de la potencia. La integral de x es x al cuadrado dividido entre 2. Al multiplicar por 2 se simplifica y el resultado es x al cuadrado más C. La C representa todas las antiderivadas posibles."],
-["Comprobación por derivación","Para verificar el resultado derivo x al cuadrado más C. La derivada de x al cuadrado es 2x y la derivada de una constante es cero. Entonces regreso exactamente a la función original. Con esto compruebo que el resultado es correcto."],
-["Segunda función: f₂(x) = sen(x)","La segunda función es seno de x y pertenece a la familia trigonométrica. Como la derivada de menos coseno de x es seno de x, entonces la integral indefinida de seno de x es menos coseno de x más C."],
-["Comprobación trigonométrica","También compruebo este resultado derivándolo. La derivada de menos coseno de x es seno de x y la derivada de C es cero. De nuevo recupero exactamente la función inicial."],
-["Constante de integración","La constante C aparece porque al derivar se pierde cualquier constante. Por ejemplo, x al cuadrado, x al cuadrado más 2 y x al cuadrado menos 5 tienen la misma derivada: 2x. En la gráfica se ve que C solo mueve la curva hacia arriba o hacia abajo, sin cambiar su forma ni sus pendientes."],
-["Enfoque algorítmico y conceptual","El enfoque algorítmico me ayuda a reconocer la forma de la integral, aplicar una regla y hacer el cálculo. El enfoque conceptual me permite entender qué significa el resultado. La integral indefinida no es una función única, porque existen infinitas funciones que comparten la misma derivada."],
-["Teorema Fundamental del Cálculo","Para terminar, el Teorema Fundamental del Cálculo conecta la derivación con la integración. La integral indefinida representa una familia de antiderivadas, mientras que la integral definida produce un valor numérico. Cuando evaluamos F de b menos F de a, la constante C se cancela."]
+const steps=[
+{
+ title:"Concepto que tomé como punto de partida",
+ html:`<div class="entry"><div class="num">1 · Planteamiento conceptual</div><h2>Concepto que tomé como punto de partida</h2><p>Para esta actividad partí de la idea de que una integral indefinida representa todas las antiderivadas de una función.</p><div class="math">F′(x) = f(x)</div><div class="math">∫ f(x) dx = F(x) + C</div><div class="facts"><div class="fact"><b>Interpretación</b><span>Familia de antiderivadas</span></div><div class="fact"><b>Condición</b><span>F debe ser derivable</span></div><div class="fact"><b>Constante</b><span>C ∈ ℝ</span></div></div></div>`,
+ script:[
+ "En esta actividad analicé la integral indefinida como una familia de antiderivadas. Para mí, el punto de partida fue entender que una antiderivada es una función que, al derivarla, vuelve a producir la función original.",
+ "Por eso escribo F prima de x igual a f de x. Si F es una antiderivada, entonces F más una constante también lo es, porque la derivada de cualquier constante es cero.",
+ "De ahí sale la expresión integral de f de x diferencial de x igual a F de x más C. Esa C es importante porque indica que no tengo una sola respuesta, sino una familia completa de funciones."
+ ]
+},
+{
+ title:"Primera función que seleccioné: f₁(x) = 2x",
+ html:`<div class="entry"><div class="num">2 · Primera función</div><h2>Primera función que seleccioné: f₁(x) = 2x</h2><p>Escogí una función polinómica. Es continua y derivable para todos los números reales.</p><div class="math">f₁(x) = 2x</div><div class="facts"><div class="fact"><b>Familia</b><span>Polinómica</span></div><div class="fact"><b>Continuidad</b><span>En todo ℝ</span></div><div class="fact"><b>Derivabilidad</b><span>En todo ℝ</span></div></div></div>`,
+ script:[
+ "La primera función que seleccioné para el trabajo fue f uno de x igual a 2x. La escogí porque pertenece a la familia polinómica y permite mostrar de manera sencilla la relación entre una función y su antiderivada.",
+ "Esta función es continua y derivable en todos los números reales. Eso significa que no tengo puntos problemáticos dentro de su dominio y puedo trabajar la integral indefinida directamente."
+ ]
+},
+{
+ title:"Cálculo de la primera integral",
+ html:`<div class="entry"><div class="num">3 · Desarrollo matemático</div><h2>Cálculo de la primera integral</h2><div class="math">∫ 2x dx = 2 ∫ x dx</div><div class="math">= 2(x²/2) + C</div><div class="math">= x² + C</div><p>El conjunto solución queda representado por todas las funciones de la forma x² + C.</p><div class="facts"><div class="fact"><b>Regla aplicada</b><span>Inversa de la potencia</span></div><div class="fact"><b>Resultado</b><span>x² + C</span></div><div class="fact"><b>Familia</b><span>{x² + C : C ∈ ℝ}</span></div></div></div>`,
+ script:[
+ "Para resolver la primera integral parto de integral de 2x diferencial de x. Como el 2 es una constante, lo puedo dejar multiplicando por fuera y me queda 2 por la integral de x.",
+ "Aplico la regla inversa de la potencia. La integral de x es x al cuadrado dividido entre 2. Entonces tengo 2 por x al cuadrado sobre 2 y esos dos se simplifican.",
+ "El resultado es x al cuadrado más C. No escribo solamente x al cuadrado porque eso representaría una sola antiderivada. Con el más C incluyo toda la familia de soluciones."
+ ]
+},
+{
+ title:"Comprobación de la primera función",
+ html:`<div class="entry"><div class="num">4 · Verificación</div><h2>Comprobación de la primera función</h2><div class="math">F(x) = x² + C</div><div class="math">F′(x) = 2x + 0</div><div class="math">F′(x) = 2x ✓</div><p>Al derivar el resultado recupero exactamente la función con la que empecé.</p></div>`,
+ script:[
+ "Después comprobé el resultado mediante la derivación. Tomo F de x igual a x al cuadrado más C.",
+ "La derivada de x al cuadrado es 2x y la derivada de C es cero. Por eso F prima de x queda igual a 2x.",
+ "Como obtengo exactamente la función inicial, confirmo que x al cuadrado más C representa la familia correcta de antiderivadas de 2x."
+ ]
+},
+{
+ title:"Segunda función que seleccioné: f₂(x) = sen(x)",
+ html:`<div class="entry"><div class="num">5 · Segunda función</div><h2>Segunda función que seleccioné: f₂(x) = sen(x)</h2><p>Para contrastar con la primera función escogí una función trigonométrica.</p><div class="math">f₂(x) = sen(x)</div><div class="math">∫ sen(x) dx = −cos(x) + C</div><div class="facts"><div class="fact"><b>Familia</b><span>Trigonométrica</span></div><div class="fact"><b>Antiderivada</b><span>−cos(x) + C</span></div><div class="fact"><b>Familia solución</b><span>{−cos(x)+C : C ∈ ℝ}</span></div></div></div>`,
+ script:[
+ "La segunda función que seleccioné fue seno de x. En este caso trabajo con una función trigonométrica, también continua y derivable en todos los números reales.",
+ "Sé que la derivada de menos coseno de x es seno de x. Por esa razón, la integral indefinida de seno de x es menos coseno de x más C.",
+ "De nuevo el resultado no es una función única. Cada valor de C produce una antiderivada diferente."
+ ]
+},
+{
+ title:"Comprobación de la segunda función",
+ html:`<div class="entry"><div class="num">6 · Verificación</div><h2>Comprobación de la segunda función</h2><div class="math">G(x) = −cos(x) + C</div><div class="math">G′(x) = sen(x) + 0</div><div class="math">G′(x) = sen(x) ✓</div><p>La derivación vuelve a producir la función trigonométrica original.</p></div>`,
+ script:[
+ "También comprobé la segunda integral derivando el resultado.",
+ "Si G de x es menos coseno de x más C, entonces su derivada es seno de x más cero.",
+ "El resultado vuelve a ser seno de x, que es la función original. Con esta comprobación confirmo la antiderivada que obtuve."
+ ]
+},
+{
+ title:"Lo que entendí sobre la constante C",
+ html:`<div class="entry"><div class="num">7 · Constante de integración</div><h2>Lo que entendí sobre la constante C</h2><div class="math">x², &nbsp; x² + 2, &nbsp; x² − 5</div><div class="math">d/dx (x² + C) = 2x</div><p>Estas funciones son distintas, pero todas tienen la misma derivada. La constante C recoge todas esas posibilidades.</p><div class="graph"><svg viewBox="0 0 760 260"><line x1="40" y1="130" x2="730" y2="130" stroke="#8190a5"/><line x1="385" y1="20" x2="385" y2="245" stroke="#8190a5"/><path id="curveA" fill="none" stroke="#7fa0ff" stroke-width="3"/><path id="curveB" fill="none" stroke="#65d393" stroke-width="3"/><path id="curveC" fill="none" stroke="#f0a36a" stroke-width="3"/></svg><div class="graph-caption">Al cambiar C, la curva se desplaza verticalmente y su derivada no cambia.</div></div></div>`,
+ script:[
+ "Este punto fue importante para entender por qué aparece la constante C. Si tomo x al cuadrado, x al cuadrado más 2 o x al cuadrado menos 5, obtengo funciones diferentes.",
+ "Sin embargo, cuando derivo cualquiera de ellas, el término constante desaparece y en todos los casos queda 2x.",
+ "Gráficamente pasa lo mismo: C mueve la parábola hacia arriba o hacia abajo, pero no cambia su forma ni sus pendientes. Por eso C no es un detalle decorativo; representa todas las funciones que la derivada no permite distinguir."
+ ]
+},
+{
+ title:"Comparación entre el procedimiento y la comprensión del resultado",
+ html:`<div class="entry"><div class="num">8 · Argumentación</div><h2>Comparación entre el procedimiento y la comprensión del resultado</h2><p>El procedimiento algorítmico me permite aplicar reglas y calcular. La interpretación conceptual me permite entender por qué la respuesta es una familia de funciones y no una función única.</p><div class="facts"><div class="fact"><b>Algorítmico</b><span>Aplicar una regla y obtener el resultado</span></div><div class="fact"><b>Conceptual</b><span>Interpretar la familia de antiderivadas</span></div><div class="fact"><b>Mi conclusión</b><span>Necesito ambos enfoques</span></div></div></div>`,
+ script:[
+ "En el trabajo también comparé dos formas de abordar la integral.",
+ "El enfoque algorítmico me sirve para reconocer la forma del ejercicio, aplicar una regla y llegar al resultado. Pero si me quedo únicamente con eso, puedo resolver una integral sin entender qué significa la respuesta.",
+ "El enfoque conceptual me permite ver que la integral indefinida representa una familia de funciones. Para mí los dos enfoques se complementan: necesito saber calcular, pero también necesito justificar por qué aparece C y por qué la respuesta no es única."
+ ]
+},
+{
+ title:"Relación con el Teorema Fundamental del Cálculo",
+ html:`<div class="entry"><div class="num">9 · Cierre</div><h2>Relación con el Teorema Fundamental del Cálculo</h2><div class="math">A(x) = ∫ₐˣ f(t) dt &nbsp; ⇒ &nbsp; A′(x) = f(x)</div><div class="math">∫ₐᵇ f(x) dx = F(b) − F(a)</div><p>Con esto relacioné la antiderivación con la acumulación y distinguí la integral indefinida de la integral definida.</p><div class="facts"><div class="fact"><b>Integral indefinida</b><span>Familia de antiderivadas</span></div><div class="fact"><b>Integral definida</b><span>Valor numérico</span></div><div class="fact"><b>Conexión</b><span>Teorema Fundamental del Cálculo</span></div></div></div>`,
+ script:[
+ "Para cerrar relacioné este tema con el Teorema Fundamental del Cálculo.",
+ "Una integral indefinida representa una familia de antiderivadas. En cambio, una integral definida entre dos límites produce un valor numérico asociado con una acumulación.",
+ "El teorema conecta ambas ideas porque permite calcular una integral definida usando una antiderivada. Cuando evalúo F de b menos F de a, cualquier constante C se cancela.",
+ "Con esta actividad entendí mejor que integrar no es solamente aplicar una fórmula. También implica reconocer la relación entre derivación, antiderivación y acumulación."
+ ]
+}
 ];
-const steps=[...document.querySelectorAll(".step")],total=steps.length;let current=0;
-const bar=document.getElementById("bar"),count=document.getElementById("count"),state=document.getElementById("state"),stitle=document.getElementById("stitle"),script=document.getElementById("script"),next=document.getElementById("next"),prev=document.getElementById("prev"),done=document.getElementById("done");
-function render(){steps.forEach((x,i)=>x.classList.toggle("visible",i<current));bar.style.width=(current/total*100)+"%";count.textContent=current+" de "+total;prev.disabled=current===0;if(current===0){state.textContent="Listo para comenzar";stitle.textContent="Introducción";script.textContent="Presiona “Comenzar” para iniciar. A medida que avances, la pizarra de la izquierda se irá completando y aquí aparecerá el guion correspondiente.";next.disabled=false;next.textContent="Comenzar →";done.classList.remove("show")}else{state.textContent=current===total?"Actividad terminada":"Paso "+current+" completado";stitle.textContent=scripts[current-1][0];script.textContent=scripts[current-1][1];if(current===total){next.disabled=true;next.textContent="Actividad terminada ✓";done.classList.add("show")}else{next.disabled=false;next.textContent="Siguiente →";done.classList.remove("show")}setTimeout(()=>steps[current-1].scrollIntoView({behavior:"smooth",block:"center"}),70)}}
-function forward(){if(current<total){current++;render()}}function back(){if(current>0){current--;render()}}next.onclick=forward;prev.onclick=back;document.addEventListener("keydown",e=>{if(e.key==="ArrowRight"||e.code==="Space"){e.preventDefault();forward()}if(e.key==="ArrowLeft"){e.preventDefault();back()}});
-function curves(){const X=x=>385+x*70,Y=y=>150-y*25;function p(c){let d="";for(let x=-4.5;x<=4.5;x+=.08){const y=.22*x*x+c;d+=(d?" L ":"M ")+X(x).toFixed(2)+" "+Y(y).toFixed(2)}return d}document.getElementById("a").setAttribute("d",p(2));document.getElementById("b").setAttribute("d",p(0));document.getElementById("c").setAttribute("d",p(-2))}curves();render();
-</script></body></html>
+
+let current=0;
+const total=steps.length;
+const entries=document.getElementById("entries");
+const board=document.getElementById("board");
+const scriptTitle=document.getElementById("scriptTitle");
+const scriptCard=document.getElementById("scriptCard");
+const scriptScroll=document.getElementById("scriptScroll");
+const bar=document.getElementById("bar");
+const counter=document.getElementById("counter");
+const next=document.getElementById("next");
+const prev=document.getElementById("prev");
+const finish=document.getElementById("finish");
+
+function drawGraph(){
+ const a=document.getElementById("curveA"),b=document.getElementById("curveB"),c=document.getElementById("curveC");
+ if(!a||!b||!c)return;
+ const X=x=>385+x*68,Y=y=>130-y*22;
+ function path(k){let d="";for(let x=-4.4;x<=4.4;x+=.08){const y=.22*x*x+k;d+=(d?" L ":"M ")+X(x).toFixed(1)+" "+Y(y).toFixed(1)}return d}
+ a.setAttribute("d",path(2));b.setAttribute("d",path(0));c.setAttribute("d",path(-2));
+}
+
+function render(){
+ entries.innerHTML=steps.slice(0,current).map(s=>s.html).join("");
+ drawGraph();
+ bar.style.width=(current/total*100)+"%";
+ counter.textContent=current+" de "+total;
+ prev.disabled=current===0;
+
+ if(current===0){
+   scriptTitle.textContent="Inicio";
+   scriptCard.innerHTML="Presiona “Comenzar” para iniciar la presentación.";
+   next.disabled=false;
+   next.textContent="Comenzar →";
+   finish.classList.remove("show");
+ }else{
+   const s=steps[current-1];
+   scriptTitle.textContent=s.title;
+   scriptCard.innerHTML=s.script.map(p=>"<p>"+p+"</p>").join("");
+   if(current===total){
+     next.disabled=true;
+     next.textContent="Actividad terminada ✓";
+     finish.classList.add("show");
+   }else{
+     next.disabled=false;
+     next.textContent="Siguiente →";
+     finish.classList.remove("show");
+   }
+   requestAnimationFrame(()=>{
+     board.scrollTop=board.scrollHeight;
+     scriptScroll.scrollTop=0;
+   });
+ }
+}
+
+function forward(){if(current<total){current++;render()}}
+function back(){if(current>0){current--;render()}}
+next.addEventListener("click",forward);
+prev.addEventListener("click",back);
+document.addEventListener("keydown",e=>{
+ if(e.key==="ArrowRight"||e.code==="Space"){e.preventDefault();forward()}
+ if(e.key==="ArrowLeft"){e.preventDefault();back()}
+});
+render();
+</script>
+</body>
+</html>
