@@ -99,6 +99,19 @@ h1{font-size:clamp(25px,3vw,39px);line-height:1.05;margin:4px 0;letter-spacing:-
   font-size:17px;line-height:1.6
 }
 .script-card p{margin:0 0 12px}.script-card p:last-child{margin-bottom:0}
+.guide-term{
+  display:inline;padding:1px 4px;border-radius:5px;cursor:pointer;
+  background:rgba(49,87,213,.08);border-bottom:1px dashed rgba(49,87,213,.42);
+  transition:background .15s ease,color .15s ease
+}
+.guide-term:hover{background:rgba(49,87,213,.17);color:#173aaf}
+.hl-target{transition:background .16s ease,box-shadow .16s ease,outline .16s ease,color .16s ease}
+.hl-active{
+  background:rgba(250,204,21,.22)!important;
+  box-shadow:0 0 0 2px rgba(250,204,21,.72) inset,0 0 18px rgba(250,204,21,.20);
+  outline:2px solid rgba(250,204,21,.60);border-radius:10px
+}
+.math.hl-active{color:#fff4a6!important}
 .script-note{
   margin-top:10px;font-size:11px;line-height:1.45;color:var(--muted);
   background:#eef2f7;border-radius:10px;padding:8px 9px
@@ -188,83 +201,83 @@ button:disabled{opacity:.45;cursor:not-allowed}
 const steps=[
 {
  title:"Concepto que tomé como punto de partida",
- html:`<div class="entry"><div class="num">1 · Planteamiento conceptual</div><h2>Concepto que tomé como punto de partida</h2><p>Para esta actividad partí de la idea de que una integral indefinida representa todas las antiderivadas de una función.</p><div class="math">F′(x) = f(x)</div><div class="math">∫ f(x) dx = F(x) + C</div><div class="facts"><div class="fact"><b>Interpretación</b><span>Familia de antiderivadas</span></div><div class="fact"><b>Condición</b><span>F debe ser derivable</span></div><div class="fact"><b>Constante</b><span>C ∈ ℝ</span></div></div></div>`,
+ html:`<div class="entry"><div class="num">1 · Planteamiento conceptual</div><h2>Concepto que tomé como punto de partida</h2><p>Para esta actividad partí de la idea de que una integral indefinida representa todas las antiderivadas de una función.</p><div class="math hl-target" id="s1-fx">F′(x) = f(x)</div><div class="math hl-target" id="s1-integral">∫ f(x) dx = F(x) + C</div><div class="facts"><div class="fact hl-target" id="s1-family"><b>Interpretación</b><span>Familia de antiderivadas</span></div><div class="fact hl-target" id="s1-condition"><b>Condición</b><span>F debe ser derivable</span></div><div class="fact hl-target" id="s1-c"><b>Constante</b><span>C ∈ ℝ</span></div></div></div>`,
  script:[
- "En esta actividad analicé la integral indefinida como una familia de antiderivadas. Para mí, el punto de partida fue entender que una antiderivada es una función que, al derivarla, vuelve a producir la función original.",
- "Por eso escribo F prima de x igual a f de x. Si F es una antiderivada, entonces F más una constante también lo es, porque la derivada de cualquier constante es cero.",
- "De ahí sale la expresión integral de f de x diferencial de x igual a F de x más C. Esa C es importante porque indica que no tengo una sola respuesta, sino una familia completa de funciones."
+ "En esta actividad analicé la <span class='guide-term' data-target='s1-integral'>integral indefinida</span> como una <span class='guide-term' data-target='s1-family'>familia de antiderivadas</span>. Para mí, el punto de partida fue entender que una antiderivada es una función que, al derivarla, vuelve a producir la función original.",
+ "Por eso escribo <span class='guide-term' data-target='s1-fx'>F prima de x igual a f de x</span>. Si F es una antiderivada, entonces F más una constante también lo es, porque la derivada de cualquier constante es cero.",
+ "De ahí sale la expresión <span class='guide-term' data-target='s1-integral'>integral de f de x diferencial de x igual a F de x más C</span>. Esa <span class='guide-term' data-target='s1-c'>C</span> es importante porque indica que no tengo una sola respuesta, sino una familia completa de funciones."
  ]
 },
 {
  title:"Primera función que seleccioné: f₁(x) = 2x",
- html:`<div class="entry"><div class="num">2 · Primera función</div><h2>Primera función que seleccioné: f₁(x) = 2x</h2><p>Escogí una función polinómica. Es continua y derivable para todos los números reales.</p><div class="math">f₁(x) = 2x</div><div class="facts"><div class="fact"><b>Familia</b><span>Polinómica</span></div><div class="fact"><b>Continuidad</b><span>En todo ℝ</span></div><div class="fact"><b>Derivabilidad</b><span>En todo ℝ</span></div></div></div>`,
+ html:`<div class="entry"><div class="num">2 · Primera función</div><h2>Primera función que seleccioné: f₁(x) = 2x</h2><p>Escogí una función polinómica. Es continua y derivable para todos los números reales.</p><div class="math hl-target" id="s2-f1">f₁(x) = 2x</div><div class="facts"><div class="fact hl-target" id="s2-family"><b>Familia</b><span>Polinómica</span></div><div class="fact hl-target" id="s2-continuity"><b>Continuidad</b><span>En todo ℝ</span></div><div class="fact hl-target" id="s2-derivable"><b>Derivabilidad</b><span>En todo ℝ</span></div></div></div>`,
  script:[
- "La primera función que seleccioné para el trabajo fue f uno de x igual a 2x. La escogí porque pertenece a la familia polinómica y permite mostrar de manera sencilla la relación entre una función y su antiderivada.",
- "Esta función es continua y derivable en todos los números reales. Eso significa que no tengo puntos problemáticos dentro de su dominio y puedo trabajar la integral indefinida directamente."
+ "La primera función que seleccioné para el trabajo fue <span class='guide-term' data-target='s2-f1'>f uno de x igual a 2x</span>. La escogí porque pertenece a la <span class='guide-term' data-target='s2-family'>familia polinómica</span> y permite mostrar de manera sencilla la relación entre una función y su antiderivada.",
+ "Esta función es <span class='guide-term' data-target='s2-continuity'>continua</span> y <span class='guide-term' data-target='s2-derivable'>derivable</span> en todos los números reales. Eso significa que no tengo puntos problemáticos dentro de su dominio y puedo trabajar la integral indefinida directamente."
  ]
 },
 {
  title:"Cálculo de la primera integral",
- html:`<div class="entry"><div class="num">3 · Desarrollo matemático</div><h2>Cálculo de la primera integral</h2><div class="math">∫ 2x dx = 2 ∫ x dx</div><div class="math">= 2(x²/2) + C</div><div class="math">= x² + C</div><p>El conjunto solución queda representado por todas las funciones de la forma x² + C.</p><div class="facts"><div class="fact"><b>Regla aplicada</b><span>Inversa de la potencia</span></div><div class="fact"><b>Resultado</b><span>x² + C</span></div><div class="fact"><b>Familia</b><span>{x² + C : C ∈ ℝ}</span></div></div></div>`,
+ html:`<div class="entry"><div class="num">3 · Desarrollo matemático</div><h2>Cálculo de la primera integral</h2><div class="math hl-target" id="s3-line1">∫ 2x dx = 2 ∫ x dx</div><div class="math hl-target" id="s3-line2">= 2(x²/2) + C</div><div class="math hl-target" id="s3-result">= x² + C</div><p class="hl-target" id="s3-explain">El conjunto solución queda representado por todas las funciones de la forma x² + C.</p><div class="facts"><div class="fact hl-target" id="s3-rule"><b>Regla aplicada</b><span>Inversa de la potencia</span></div><div class="fact hl-target" id="s3-result-box"><b>Resultado</b><span>x² + C</span></div><div class="fact hl-target" id="s3-family"><b>Familia</b><span>{x² + C : C ∈ ℝ}</span></div></div></div>`,
  script:[
- "Para resolver la primera integral parto de integral de 2x diferencial de x. Como el 2 es una constante, lo puedo dejar multiplicando por fuera y me queda 2 por la integral de x.",
- "Aplico la regla inversa de la potencia. La integral de x es x al cuadrado dividido entre 2. Entonces tengo 2 por x al cuadrado sobre 2 y esos dos se simplifican.",
- "El resultado es x al cuadrado más C. No escribo solamente x al cuadrado porque eso representaría una sola antiderivada. Con el más C incluyo toda la familia de soluciones."
+ "Para resolver la primera integral parto de <span class='guide-term' data-target='s3-line1'>integral de 2x diferencial de x</span>. Como el 2 es una constante, lo puedo dejar multiplicando por fuera y me queda 2 por la integral de x.",
+ "Aplico la <span class='guide-term' data-target='s3-rule'>regla inversa de la potencia</span>. La integral de x es x al cuadrado dividido entre 2. Entonces tengo <span class='guide-term' data-target='s3-line2'>2 por x al cuadrado sobre 2</span> y esos dos se simplifican.",
+ "El resultado es <span class='guide-term' data-target='s3-result,s3-result-box'>x al cuadrado más C</span>. No escribo solamente x al cuadrado porque eso representaría una sola antiderivada. Con el más C incluyo <span class='guide-term' data-target='s3-family,s3-explain'>toda la familia de soluciones</span>."
  ]
 },
 {
  title:"Comprobación de la primera función",
- html:`<div class="entry"><div class="num">4 · Verificación</div><h2>Comprobación de la primera función</h2><div class="math">F(x) = x² + C</div><div class="math">F′(x) = 2x + 0</div><div class="math">F′(x) = 2x ✓</div><p>Al derivar el resultado recupero exactamente la función con la que empecé.</p></div>`,
+ html:`<div class="entry"><div class="num">4 · Verificación</div><h2>Comprobación de la primera función</h2><div class="math hl-target" id="s4-f">F(x) = x² + C</div><div class="math hl-target" id="s4-derive">F′(x) = 2x + 0</div><div class="math hl-target" id="s4-result">F′(x) = 2x ✓</div><p class="hl-target" id="s4-explain">Al derivar el resultado recupero exactamente la función con la que empecé.</p></div>`,
  script:[
- "Después comprobé el resultado mediante la derivación. Tomo F de x igual a x al cuadrado más C.",
- "La derivada de x al cuadrado es 2x y la derivada de C es cero. Por eso F prima de x queda igual a 2x.",
- "Como obtengo exactamente la función inicial, confirmo que x al cuadrado más C representa la familia correcta de antiderivadas de 2x."
+ "Después comprobé el resultado mediante la derivación. Tomo <span class='guide-term' data-target='s4-f'>F de x igual a x al cuadrado más C</span>.",
+ "La derivada de x al cuadrado es 2x y la derivada de C es cero. Por eso <span class='guide-term' data-target='s4-derive'>F prima de x queda igual a 2x más cero</span>.",
+ "Como obtengo <span class='guide-term' data-target='s4-result,s4-explain'>exactamente la función inicial</span>, confirmo que x al cuadrado más C representa la familia correcta de antiderivadas de 2x."
  ]
 },
 {
  title:"Segunda función que seleccioné: f₂(x) = sen(x)",
- html:`<div class="entry"><div class="num">5 · Segunda función</div><h2>Segunda función que seleccioné: f₂(x) = sen(x)</h2><p>Para contrastar con la primera función escogí una función trigonométrica.</p><div class="math">f₂(x) = sen(x)</div><div class="math">∫ sen(x) dx = −cos(x) + C</div><div class="facts"><div class="fact"><b>Familia</b><span>Trigonométrica</span></div><div class="fact"><b>Antiderivada</b><span>−cos(x) + C</span></div><div class="fact"><b>Familia solución</b><span>{−cos(x)+C : C ∈ ℝ}</span></div></div></div>`,
+ html:`<div class="entry"><div class="num">5 · Segunda función</div><h2>Segunda función que seleccioné: f₂(x) = sen(x)</h2><p>Para contrastar con la primera función escogí una función trigonométrica.</p><div class="math hl-target" id="s5-f2">f₂(x) = sen(x)</div><div class="math hl-target" id="s5-integral">∫ sen(x) dx = −cos(x) + C</div><div class="facts"><div class="fact hl-target" id="s5-family"><b>Familia</b><span>Trigonométrica</span></div><div class="fact hl-target" id="s5-antiderivative"><b>Antiderivada</b><span>−cos(x) + C</span></div><div class="fact hl-target" id="s5-solution"><b>Familia solución</b><span>{−cos(x)+C : C ∈ ℝ}</span></div></div></div>`,
  script:[
- "La segunda función que seleccioné fue seno de x. En este caso trabajo con una función trigonométrica, también continua y derivable en todos los números reales.",
- "Sé que la derivada de menos coseno de x es seno de x. Por esa razón, la integral indefinida de seno de x es menos coseno de x más C.",
- "De nuevo el resultado no es una función única. Cada valor de C produce una antiderivada diferente."
+ "La segunda función que seleccioné fue <span class='guide-term' data-target='s5-f2'>seno de x</span>. En este caso trabajo con una <span class='guide-term' data-target='s5-family'>función trigonométrica</span>, también continua y derivable en todos los números reales.",
+ "Sé que la derivada de menos coseno de x es seno de x. Por esa razón, <span class='guide-term' data-target='s5-integral,s5-antiderivative'>la integral indefinida de seno de x es menos coseno de x más C</span>.",
+ "De nuevo el resultado no es una función única. <span class='guide-term' data-target='s5-solution'>Cada valor de C produce una antiderivada diferente</span>."
  ]
 },
 {
  title:"Comprobación de la segunda función",
- html:`<div class="entry"><div class="num">6 · Verificación</div><h2>Comprobación de la segunda función</h2><div class="math">G(x) = −cos(x) + C</div><div class="math">G′(x) = sen(x) + 0</div><div class="math">G′(x) = sen(x) ✓</div><p>La derivación vuelve a producir la función trigonométrica original.</p></div>`,
+ html:`<div class="entry"><div class="num">6 · Verificación</div><h2>Comprobación de la segunda función</h2><div class="math hl-target" id="s6-g">G(x) = −cos(x) + C</div><div class="math hl-target" id="s6-derive">G′(x) = sen(x) + 0</div><div class="math hl-target" id="s6-result">G′(x) = sen(x) ✓</div><p class="hl-target" id="s6-explain">La derivación vuelve a producir la función trigonométrica original.</p></div>`,
  script:[
  "También comprobé la segunda integral derivando el resultado.",
- "Si G de x es menos coseno de x más C, entonces su derivada es seno de x más cero.",
- "El resultado vuelve a ser seno de x, que es la función original. Con esta comprobación confirmo la antiderivada que obtuve."
+ "Si <span class='guide-term' data-target='s6-g'>G de x es menos coseno de x más C</span>, entonces su derivada es <span class='guide-term' data-target='s6-derive'>seno de x más cero</span>.",
+ "El resultado vuelve a ser <span class='guide-term' data-target='s6-result,s6-explain'>seno de x, que es la función original</span>. Con esta comprobación confirmo la antiderivada que obtuve."
  ]
 },
 {
  title:"Lo que entendí sobre la constante C",
- html:`<div class="entry"><div class="num">7 · Constante de integración</div><h2>Lo que entendí sobre la constante C</h2><div class="math">x², &nbsp; x² + 2, &nbsp; x² − 5</div><div class="math">d/dx (x² + C) = 2x</div><p>Estas funciones son distintas, pero todas tienen la misma derivada. La constante C recoge todas esas posibilidades.</p><div class="graph"><svg viewBox="0 0 760 260"><line x1="40" y1="130" x2="730" y2="130" stroke="#8190a5"/><line x1="385" y1="20" x2="385" y2="245" stroke="#8190a5"/><path id="curveA" fill="none" stroke="#7fa0ff" stroke-width="3"/><path id="curveB" fill="none" stroke="#65d393" stroke-width="3"/><path id="curveC" fill="none" stroke="#f0a36a" stroke-width="3"/></svg><div class="graph-caption">Al cambiar C, la curva se desplaza verticalmente y su derivada no cambia.</div></div></div>`,
+ html:`<div class="entry"><div class="num">7 · Constante de integración</div><h2>Lo que entendí sobre la constante C</h2><div class="math hl-target" id="s7-family">x², &nbsp; x² + 2, &nbsp; x² − 5</div><div class="math hl-target" id="s7-derive">d/dx (x² + C) = 2x</div><p class="hl-target" id="s7-explain">Estas funciones son distintas, pero todas tienen la misma derivada. La constante C recoge todas esas posibilidades.</p><div class="graph hl-target" id="s7-graph"><svg viewBox="0 0 760 260"><line x1="40" y1="130" x2="730" y2="130" stroke="#8190a5"/><line x1="385" y1="20" x2="385" y2="245" stroke="#8190a5"/><path id="curveA" fill="none" stroke="#7fa0ff" stroke-width="3"/><path id="curveB" fill="none" stroke="#65d393" stroke-width="3"/><path id="curveC" fill="none" stroke="#f0a36a" stroke-width="3"/></svg><div class="graph-caption">Al cambiar C, la curva se desplaza verticalmente y su derivada no cambia.</div></div></div>`,
  script:[
- "Este punto fue importante para entender por qué aparece la constante C. Si tomo x al cuadrado, x al cuadrado más 2 o x al cuadrado menos 5, obtengo funciones diferentes.",
- "Sin embargo, cuando derivo cualquiera de ellas, el término constante desaparece y en todos los casos queda 2x.",
- "Gráficamente pasa lo mismo: C mueve la parábola hacia arriba o hacia abajo, pero no cambia su forma ni sus pendientes. Por eso C no es un detalle decorativo; representa todas las funciones que la derivada no permite distinguir."
+ "Este punto fue importante para entender por qué aparece la constante C. Si tomo <span class='guide-term' data-target='s7-family'>x al cuadrado, x al cuadrado más 2 o x al cuadrado menos 5</span>, obtengo funciones diferentes.",
+ "Sin embargo, cuando derivo cualquiera de ellas, el término constante desaparece y <span class='guide-term' data-target='s7-derive'>en todos los casos queda 2x</span>.",
+ "<span class='guide-term' data-target='s7-graph'>Gráficamente pasa lo mismo</span>: C mueve la parábola hacia arriba o hacia abajo, pero no cambia su forma ni sus pendientes. Por eso <span class='guide-term' data-target='s7-explain'>C no es un detalle decorativo</span>; representa todas las funciones que la derivada no permite distinguir."
  ]
 },
 {
  title:"Comparación entre el procedimiento y la comprensión del resultado",
- html:`<div class="entry"><div class="num">8 · Argumentación</div><h2>Comparación entre el procedimiento y la comprensión del resultado</h2><p>El procedimiento algorítmico me permite aplicar reglas y calcular. La interpretación conceptual me permite entender por qué la respuesta es una familia de funciones y no una función única.</p><div class="facts"><div class="fact"><b>Algorítmico</b><span>Aplicar una regla y obtener el resultado</span></div><div class="fact"><b>Conceptual</b><span>Interpretar la familia de antiderivadas</span></div><div class="fact"><b>Mi conclusión</b><span>Necesito ambos enfoques</span></div></div></div>`,
+ html:`<div class="entry"><div class="num">8 · Argumentación</div><h2>Comparación entre el procedimiento y la comprensión del resultado</h2><p>El procedimiento algorítmico me permite aplicar reglas y calcular. La interpretación conceptual me permite entender por qué la respuesta es una familia de funciones y no una función única.</p><div class="facts"><div class="fact hl-target" id="s8-algorithm"><b>Algorítmico</b><span>Aplicar una regla y obtener el resultado</span></div><div class="fact hl-target" id="s8-concept"><b>Conceptual</b><span>Interpretar la familia de antiderivadas</span></div><div class="fact hl-target" id="s8-conclusion"><b>Mi conclusión</b><span>Necesito ambos enfoques</span></div></div></div>`,
  script:[
  "En el trabajo también comparé dos formas de abordar la integral.",
- "El enfoque algorítmico me sirve para reconocer la forma del ejercicio, aplicar una regla y llegar al resultado. Pero si me quedo únicamente con eso, puedo resolver una integral sin entender qué significa la respuesta.",
- "El enfoque conceptual me permite ver que la integral indefinida representa una familia de funciones. Para mí los dos enfoques se complementan: necesito saber calcular, pero también necesito justificar por qué aparece C y por qué la respuesta no es única."
+ "El <span class='guide-term' data-target='s8-algorithm'>enfoque algorítmico</span> me sirve para reconocer la forma del ejercicio, aplicar una regla y llegar al resultado. Pero si me quedo únicamente con eso, puedo resolver una integral sin entender qué significa la respuesta.",
+ "El <span class='guide-term' data-target='s8-concept'>enfoque conceptual</span> me permite ver que la integral indefinida representa una familia de funciones. Para mí <span class='guide-term' data-target='s8-conclusion'>los dos enfoques se complementan</span>: necesito saber calcular, pero también necesito justificar por qué aparece C y por qué la respuesta no es única."
  ]
 },
 {
  title:"Relación con el Teorema Fundamental del Cálculo",
- html:`<div class="entry"><div class="num">9 · Cierre</div><h2>Relación con el Teorema Fundamental del Cálculo</h2><div class="math">A(x) = ∫ₐˣ f(t) dt &nbsp; ⇒ &nbsp; A′(x) = f(x)</div><div class="math">∫ₐᵇ f(x) dx = F(b) − F(a)</div><p>Con esto relacioné la antiderivación con la acumulación y distinguí la integral indefinida de la integral definida.</p><div class="facts"><div class="fact"><b>Integral indefinida</b><span>Familia de antiderivadas</span></div><div class="fact"><b>Integral definida</b><span>Valor numérico</span></div><div class="fact"><b>Conexión</b><span>Teorema Fundamental del Cálculo</span></div></div></div>`,
+ html:`<div class="entry"><div class="num">9 · Cierre</div><h2>Relación con el Teorema Fundamental del Cálculo</h2><div class="math hl-target" id="s9-accumulation">A(x) = ∫ₐˣ f(t) dt &nbsp; ⇒ &nbsp; A′(x) = f(x)</div><div class="math hl-target" id="s9-definite">∫ₐᵇ f(x) dx = F(b) − F(a)</div><p class="hl-target" id="s9-explain">Con esto relacioné la antiderivación con la acumulación y distinguí la integral indefinida de la integral definida.</p><div class="facts"><div class="fact hl-target" id="s9-indefinite"><b>Integral indefinida</b><span>Familia de antiderivadas</span></div><div class="fact hl-target" id="s9-defined"><b>Integral definida</b><span>Valor numérico</span></div><div class="fact hl-target" id="s9-tfc"><b>Conexión</b><span>Teorema Fundamental del Cálculo</span></div></div></div>`,
  script:[
  "Para cerrar relacioné este tema con el Teorema Fundamental del Cálculo.",
- "Una integral indefinida representa una familia de antiderivadas. En cambio, una integral definida entre dos límites produce un valor numérico asociado con una acumulación.",
- "El teorema conecta ambas ideas porque permite calcular una integral definida usando una antiderivada. Cuando evalúo F de b menos F de a, cualquier constante C se cancela.",
- "Con esta actividad entendí mejor que integrar no es solamente aplicar una fórmula. También implica reconocer la relación entre derivación, antiderivación y acumulación."
+ "Una <span class='guide-term' data-target='s9-indefinite'>integral indefinida representa una familia de antiderivadas</span>. En cambio, una <span class='guide-term' data-target='s9-defined'>integral definida entre dos límites produce un valor numérico</span> asociado con una acumulación.",
+ "El <span class='guide-term' data-target='s9-tfc'>teorema conecta ambas ideas</span> porque permite calcular una integral definida usando una antiderivada. Cuando evalúo <span class='guide-term' data-target='s9-definite'>F de b menos F de a</span>, cualquier constante C se cancela.",
+ "Con esta actividad entendí mejor que integrar no es solamente aplicar una fórmula. También implica reconocer la relación entre <span class='guide-term' data-target='s9-accumulation,s9-explain'>derivación, antiderivación y acumulación</span>."
  ]
 }
 ];
@@ -331,6 +344,43 @@ document.addEventListener("keydown",e=>{
  if(e.key==="ArrowRight"||e.code==="Space"){e.preventDefault();forward()}
  if(e.key==="ArrowLeft"){e.preventDefault();back()}
 });
+
+function clearGuideHighlights(){
+ document.querySelectorAll(".hl-active").forEach(el=>el.classList.remove("hl-active"));
+}
+function targetElements(value){
+ if(!value)return[];
+ return value.split(",").map(id=>document.getElementById(id.trim())).filter(Boolean);
+}
+function ensureVisibleInBoard(el){
+ const br=board.getBoundingClientRect(),er=el.getBoundingClientRect();
+ if(er.top<br.top+10||er.bottom>br.bottom-10){
+   el.scrollIntoView({behavior:"smooth",block:"center"});
+ }
+}
+function highlightFromGuide(term){
+ clearGuideHighlights();
+ const els=targetElements(term.dataset.target);
+ els.forEach(el=>el.classList.add("hl-active"));
+ if(els[0])ensureVisibleInBoard(els[0]);
+}
+scriptCard.addEventListener("mouseover",e=>{
+ const term=e.target.closest(".guide-term");
+ if(term)highlightFromGuide(term);
+});
+scriptCard.addEventListener("mouseout",e=>{
+ const term=e.target.closest(".guide-term");
+ if(!term)return;
+ const to=e.relatedTarget?.closest?.(".guide-term");
+ if(to===term)return;
+ clearGuideHighlights();
+});
+scriptCard.addEventListener("focusin",e=>{
+ const term=e.target.closest(".guide-term");
+ if(term)highlightFromGuide(term);
+});
+scriptCard.addEventListener("focusout",clearGuideHighlights);
+
 render();
 </script>
 </body>
