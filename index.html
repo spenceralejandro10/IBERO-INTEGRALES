@@ -24,7 +24,7 @@ body{
   background:#fff;border:1px solid var(--line);border-radius:18px;
   box-shadow:var(--shadow);padding:15px 18px
 }
-.header-grid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start}
+.header-grid{display:grid;grid-template-columns:1fr;gap:10px;align-items:start}
 .eyebrow{font-size:11px;font-weight:900;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
 h1{font-size:clamp(25px,3vw,39px);line-height:1.05;margin:4px 0;letter-spacing:-.04em}
 .name{font-size:18px;font-weight:850;margin-top:7px}
@@ -131,12 +131,12 @@ button:disabled{opacity:.45;cursor:not-allowed}
       <div>
         <div class="eyebrow">Cálculo Integral · Actividad 2</div>
         <h1>Análisis conceptual de la integral indefinida</h1>
+        <div class="dev">
+          <b>Plataforma desarrollada por David Alejandro Spencer</b>
+          Tecnologías utilizadas: HTML5 · CSS3 · JavaScript · SVG
+        </div>
         <div class="name">David Alejandro Spencer</div>
         <div class="course">Ingeniería en Ciencia de Datos · Corporación Universitaria Iberoamericana</div>
-      </div>
-      <div class="dev">
-        <b>Plataforma desarrollada por David Alejandro Spencer</b>
-        Tecnologías utilizadas: HTML5 · CSS3 · JavaScript · SVG
       </div>
     </div>
     <div class="progress-row">
@@ -296,14 +296,14 @@ function render(){
  prev.disabled=current===0;
 
  if(current===0){
-   scriptTitle.textContent="Inicio";
+   scriptTitle.textContent="Actividad 0 de "+total+" · Inicio";
    scriptCard.innerHTML="Presiona “Comenzar” para iniciar la presentación.";
    next.disabled=false;
    next.textContent="Comenzar →";
    finish.classList.remove("show");
  }else{
    const s=steps[current-1];
-   scriptTitle.textContent=s.title;
+   scriptTitle.textContent="Actividad "+current+" de "+total+" · "+s.title;
    scriptCard.innerHTML=s.script.map(p=>"<p>"+p+"</p>").join("");
    if(current===total){
      next.disabled=true;
